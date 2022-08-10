@@ -5,6 +5,7 @@ import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import Dashboard from './pages/Dashboard/Dashboard'
 import NotFound from './pages/NotFound/NotFound'
+import './app.css'
 
 function App() {
   const user = useSelector(state => state.user.user)
