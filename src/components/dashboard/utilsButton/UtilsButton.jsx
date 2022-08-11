@@ -23,26 +23,27 @@ const UtilsButton = () => {
   return (
     <>
       <div className="d-flex gap-2 sm-mt-3 justify-content-between mt-3 mt-md-0">
-        <button type="button" className="btn btn-primary rounded-pill ms-md-auto ms-sm-0" data-bs-toggle="modal" data-bs-target="#modalkategori"><span className='me-1'><BiPlusCircle size={25} /></span>Tambah Kategori</button>
-        <button type="button" className="btn btn-outline-primary rounded-pill">Sorting By <span><BiDownArrow /></span></button>
+        <button type="button" className="btn btn-purple rounded-pill ms-md-auto ms-sm-0 py-2" data-bs-toggle="modal" data-bs-target="#modalkategori"><span className='me-1'><BiPlusCircle size={25} /></span>Tambah Kategori</button>
+        <button type="button" className="btn btn-outline-purple rounded-pill py-2">Sorting By <span><BiDownArrow /></span></button>
       </div>
 
-      <div className="modal fade" id="modalkategori" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      {/* modal */}
+      <div className="modal fade" id="modalkategori" tabIndex="-1" aria-labelledby="modalkategori" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-xl">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Tambah Kategori</h5>
+              <h5 className="modal-title fw-bold" id="modalkategori">Tambah Kategori</h5>
               <div className='bg-danger rounded-circle position-relative' style={{ width: '25px', height: '25px' }}>
                 <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
             </div>
             <div className="modal-body">
               <div className="mb-3 px-md-3 px-sm-0">
-                <label htmlFor="kategori" className="form-label text-primary">Nama Kategori</label>
+                <label htmlFor="kategori" className="form-label text-purple">Nama Kategori</label>
                 <input type="text" onChange={handleChange} className="form-control" name='kategori' id="kategori" aria-describedby="emailHelp" />
               </div>
               <div className="list-category px-md-3 px-sm-0">
-                <p className='text-primary mb-2'>Daftar Kategori</p>
+                <p className='text-purple mb-2'>Daftar Kategori</p>
                 <ul className="list-group">
                   <li className="list-group-item d-flex justify-content-between align-items-center">
                     <p>Kategori 1</p>
@@ -63,7 +64,7 @@ const UtilsButton = () => {
               {id && <p>August 10, 2022</p>}
               <div className="buttons d-flex gap-2">
                 {id && <button type="submit" className="btn btn-outline-danger rounded-pill" onClick={handleAdd}>Hapus</button>}
-                <button type="submit" className="btn btn-primary rounded-pill ms-auto" onClick={handleAdd}>Tambah</button>
+                <button type="submit" className="btn btn-purple rounded-pill ms-auto" onClick={handleAdd}>Tambah</button>
               </div>
             </div>
           </div>

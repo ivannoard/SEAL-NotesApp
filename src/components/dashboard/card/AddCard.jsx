@@ -35,7 +35,7 @@ const AddCard = () => {
         <div className="modal-dialog modal-dialog-centered modal-xl">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Tambah Catatan</h5>
+              <h4 className="modal-title fw-bold" id="exampleModalLabel">Tambah Catatan</h4>
               <div className='bg-danger rounded-circle position-relative' style={{ width: '25px', height: '25px' }}>
                 <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
@@ -43,11 +43,11 @@ const AddCard = () => {
             <div className="modal-body">
               <form>
                 <div className="mb-3">
-                  <label htmlFor="judul" className="form-label">Judul</label>
+                  <label htmlFor="judul" className="form-label text-purple">Judul</label>
                   <input type="text" onChange={handleChange} className="form-control" name='judul' id="judul" aria-describedby="emailHelp" />
                 </div>
                 <div>
-                  <label htmlFor="isi" className="form-label">Isi</label>
+                  <label htmlFor="isi" className="form-label text-purple">Isi</label>
                   <textarea name="isi" onChange={handleChange} id="" cols="30" rows="10"></textarea>
                 </div>
               </form>
@@ -56,7 +56,7 @@ const AddCard = () => {
               {id && <p>August 10, 2022</p>}
               <div className="buttons d-flex gap-2">
                 {id && <button type="submit" className="btn btn-outline-danger rounded-pill" onClick={handleAdd}>Hapus</button>}
-                <button type="submit" className="btn btn-primary rounded-pill ms-auto" onClick={handleAdd}>Tambah</button>
+                <button type="submit" className="btn btn-purple rounded-pill ms-auto" onClick={handleAdd}>Tambah</button>
               </div>
             </div>
           </div>
