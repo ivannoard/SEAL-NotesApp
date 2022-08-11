@@ -8,6 +8,8 @@ const AddCard = () => {
     judul: '',
     isi: ''
   })
+  const id = false
+
   const handleChange = (e) => {
     const name = e.target.getAttribute('name')
     setFields({
@@ -19,22 +21,24 @@ const AddCard = () => {
     e.preventDefault()
     console.log(fields)
   }
-  console.log(fields)
   return (
     <>
-      <div className="card rounded-5 border-light" style={{ width: '312px', height: '327px', backgroundColor: '#E9E9E9', cursor: 'pointer' }} data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <div className="card card-add rounded-5 border-light" data-bs-toggle="modal" data-bs-target="#modaladd">
         <div className="d-flex flex-column justify-content-center align-items-center h-100 w-100">
           <img src={filePlus} alt="" />
           <p className='text-secondary mt-2'>Tambah Catatan</p>
         </div>
       </div>
 
-      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog">
+      {/* modal */}
+      <div className="modal fade" id="modaladd" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered modal-xl">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">Tambah Catatan</h5>
-              <button type="button" className="btn-close rounded-circle text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              <div className='bg-danger rounded-circle position-relative' style={{ width: '25px', height: '25px' }}>
+                <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
             </div>
             <div className="modal-body">
               <form>
@@ -48,8 +52,12 @@ const AddCard = () => {
                 </div>
               </form>
             </div>
-            <div className="modal-footer">
-              <button type="submit" className="btn btn-primary rounded-pill" onClick={handleAdd}>Tambah</button>
+            <div className={`modal-footer d-flex ${id ? 'justify-content-between' : ''} align-items-center`}>
+              {id && <p>August 10, 2022</p>}
+              <div className="buttons d-flex gap-2">
+                {id && <button type="submit" className="btn btn-outline-danger rounded-pill" onClick={handleAdd}>Hapus</button>}
+                <button type="submit" className="btn btn-primary rounded-pill ms-auto" onClick={handleAdd}>Tambah</button>
+              </div>
             </div>
           </div>
         </div>

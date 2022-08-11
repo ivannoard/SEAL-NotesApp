@@ -1,0 +1,31 @@
+.card-note {
+  width: 312px;
+  height: 20rem;
+  margin: 0;
+}
+
+.note-title {
+  width: 60%;
+}
+
+@media screen and (max-width: 1399px) {
+  .card-note {
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card-note {
+    width: 250px;
+  }
+
+  .note-title {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .card-note {
+    width: 350px;
+  }
+}

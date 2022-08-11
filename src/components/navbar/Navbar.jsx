@@ -4,7 +4,8 @@ import logo from '../../images/logo.png'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { logoutUser } from '../../redux/actions/userAction'
-
+import { FiLogOut } from "react-icons/fi";
+import { BiUser } from "react-icons/bi";
 const Navbar = () => {
 
   const [profileToggle, setProfileToggle] = useState(false)
@@ -32,10 +33,10 @@ const Navbar = () => {
               <img src={photo} alt="profile-img" width='50px' height='50px' className="rounded-circle" />
             </div>
             {/* toggle profile */}
-            <div className="toggle position-absolute w-100 px-3 py-2 mt-2 rounded shadow-sm" style={{ display: profileToggle ? 'block' : 'none', background: 'white', zIndex: '5' }}>
+            <div className="toggle position-absolute px-3 py-2 mt-2 rounded shadow-sm" style={{ display: profileToggle ? 'block' : 'none', background: 'white', zIndex: '5', width: '300px', right: 0 }}>
               <div className="d-flex flex-column gap-2">
-                <span onClick={() => console.log('profile')}>Profile</span>
-                <span onClick={handleLogout}>Logout</span>
+                <span onClick={() => console.log('profile')}><BiUser className='text-primary' /> Profile</span>
+                <span onClick={handleLogout} className='text-danger'><FiLogOut /> Logout</span>
               </div>
             </div>
           </div>

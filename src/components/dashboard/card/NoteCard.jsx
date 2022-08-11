@@ -1,16 +1,23 @@
 import React from 'react'
 import { BiPencil } from "react-icons/bi";
+import './notecard.css'
+
 const NoteCard = () => {
+
+  const bgColor = ['#FEC871', '#FD9B71', '#E4ED8F', '#B491FA', '#E3ED90', '#00D3FD']
+  const colorIndex = Math.floor(Math.random() * bgColor.length)
+  // console.log(bgColor[colorIndex])
+
   return (
-    <div className="card rounded-5 border-light overflow-auto" style={{ width: '312px', height: '327px', backgroundColor: '#FEC871' }}>
+    <div className="card card-note rounded-5 border-light overflow-auto" style={{ backgroundColor: bgColor[colorIndex] }}>
       <div className="card-body">
-        <div className="d-flex flex-column h-100 justify-content-between">
+        <div className="d-flex flex-column h-100 justify-content-between py-2">
           <div className="top">
-            <p className="rounded-pill bg-light px-2 py-1" style={{ width: '60%' }}>Catatan Magang</p>
-            <p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat beatae perspiciatis earum adipisci eius labore autem eaque repellat dolor, ipsam libero hic voluptates, mollitia, commodi corrupti! Alias labore quisquam velit.</p>
+            <p className="rounded-pill note-title bg-light px-2 py-1 mb-2">Catatan Magang</p>
+            <p className="card-text fs-6">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur voluptatum esse alias, ratione sed eaque adipisci cumque quasi eveniet harum!</p>
           </div>
           <div className="bottom d-flex justify-content-between align-items-center">
-            <p className='align-self-end'>August 10, 2022</p>
+            <p className='align-self-end pb-2'>August 10, 2022</p>
             <div style={{ background: '#161616', width: '47px', height: '47px' }} className='rounded-circle text-center d-flex justify-content-center align-items-center text-white'>
               <BiPencil size={30} />
             </div>

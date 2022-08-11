@@ -3,12 +3,8 @@ import { Navigate } from "react-router-dom"
 import Input from "../../components/dashboard/input/Input"
 import UtilsButton from "../../components/dashboard/utilsButton/UtilsButton"
 import Navbar from "../../components/navbar/Navbar"
-
-
 import AddCard from "../../components/dashboard/card/AddCard"
 import NoteCard from "../../components/dashboard/card/NoteCard"
-import { useState } from "react"
-import Modal from "../../components/dashboard/modal/Modal"
 
 const Dashboard = () => {
   const user = useSelector(state => state.user.user)
@@ -18,7 +14,7 @@ const Dashboard = () => {
       {user ? (
         <div className="Dashboard" style={{ minHeight: '100vh' }}>
           <Navbar />
-          <div className="container">
+          <div className="container mt-md-5 ">
             {/* Code Here */}
             {/* top */}
             <div className="row">
@@ -32,14 +28,9 @@ const Dashboard = () => {
             {/* bottom */}
             <div className="d-flex flex-wrap mt-4 gap-3 justify-content-center justify-content-md-start">
               <AddCard />
-              <NoteCard />
-              <NoteCard />
-              <NoteCard />
-              <NoteCard />
-              <NoteCard />
-              <NoteCard />
-              <NoteCard />
-              <NoteCard />
+              {new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 5, 6, 7, 8, 9).map(item => (
+                <NoteCard />
+              ))}
             </div>
           </div>
         </div>
