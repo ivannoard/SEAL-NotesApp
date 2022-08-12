@@ -8,10 +8,10 @@ function Setting() {
     <div className='container'>
         <Navbar/>
         <div className='d-flex row gx-3'>
-            <div className='col-3'>
+            <div className='col-lg-3 col-sm-12 col-md-12'>
                 <Sidebar/>
             </div>
-            <div className='col-9'>
+            <div className='col-lg-9 col-sm-12 col-md-12'>
                 <ComponentSetting/>
             </div>
         </div>

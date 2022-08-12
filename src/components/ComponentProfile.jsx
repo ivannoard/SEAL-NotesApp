@@ -3,7 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 
 function ComponentProfile() {
   return (
-    <div className='card px-5 py-5 '>
+    <div className='border px-5 py-5 '>
         <div className='d-flex'>
             <div><span className='me-1'><FaUserCircle size={80}/></span></div>
             <div className='px-3'>

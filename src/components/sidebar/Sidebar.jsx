@@ -4,7 +4,7 @@ import { FiSettings, FiUser } from "react-icons/fi";
 
 function Sidebar() {
   return (
-    <div className='card'>
+    <div className='border'>
         <div>
             <Link to="/profile" style={{ textDecoration: "none" }}>
                 <button type="button" className="btn"><span><FiUser /></span> Profile</button>

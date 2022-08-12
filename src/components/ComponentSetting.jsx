@@ -2,7 +2,7 @@ import React from 'react'
 
 function ComponentSetting() {
   return (
-    <div className='card px-5 py-5 '>
+    <div className='border px-5 py-5 '>
         <h4>Ubah Kata Sandi</h4>
         <form className='py-3'>
         <div className="mb-3">
