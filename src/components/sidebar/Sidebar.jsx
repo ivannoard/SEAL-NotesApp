@@ -4,21 +4,17 @@ import { FiSettings, FiUser } from "react-icons/fi";
 
 function Sidebar() {
   return (
-    <div className=''>
-        <ul>
+    <div className='card'>
+        <div>
             <Link to="/profile" style={{ textDecoration: "none" }}>
-                <li>
-                    <FiUser className='icon'/>
-                    <span>Profile</span>
-                </li>
+                <button type="button" className="btn"><span><FiUser /></span> Profile</button>
             </Link>
+        </div>
+        <div>
             <Link to="/setting" style={{ textDecoration: "none" }}>
-                <li>
-                    <FiSettings className='icon'/>
-                    <span>Pengaturan</span>
-                </li>
+                <button type="button" className="btn"><span><FiSettings /></span> Pengaturan</button>
             </Link>
-        </ul>
+        </div>
     </div>
   )
 }

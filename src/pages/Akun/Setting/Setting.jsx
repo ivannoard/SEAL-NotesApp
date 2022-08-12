@@ -7,7 +7,7 @@ function Setting() {
   return (
     <div className='container'>
         <Navbar/>
-        <div className='d-flex'>
+        <div className='d-flex row gx-3'>
             <div className='col-3'>
                 <Sidebar/>
             </div>
