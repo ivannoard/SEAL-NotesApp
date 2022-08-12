@@ -21,13 +21,13 @@ const Navbar = () => {
     <div className="Navbar">
       <div className="container py-3">
         <div className="d-flex align-items-center justify-content-between">
-          <div className="left">
+          <div className="left-nav">
             <div className="logo d-flex align-items-center gap-1">
               <img src={logo} alt="logo" style={{ marginTop: '-15px' }} />
               <h4>QuickNoted.</h4>
             </div>
           </div>
-          <div className="right position-relative" style={{ cursor: 'pointer' }} onClick={() => setProfileToggle(!profileToggle)}>
+          <div className="right-nav position-relative" style={{ cursor: 'pointer' }} onClick={() => setProfileToggle(!profileToggle)}>
             <div className="profile d-flex align-items-center gap-2">
               <h6 className='username'>Verdian</h6>
               <img src={photo} alt="profile-img" width='50px' height='50px' className="rounded-circle" />
