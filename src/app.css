@@ -30,6 +30,10 @@
   color: white;
 }
 
+.form-select:focus {
+  border: 1px solid #4164E3;
+}
+
 .form-control:focus {
   border-color: #4164E3;
   box-shadow: none;

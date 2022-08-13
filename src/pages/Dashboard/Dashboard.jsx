@@ -8,6 +8,48 @@ import NoteCard from "../../components/dashboard/card/NoteCard"
 
 const Dashboard = () => {
   const user = useSelector(state => state.user.user)
+  const data = [
+    {
+      id: '1',
+      name: 'my notebook',
+      content: '  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus ut libero dolor doloribus laborum numquam cupiditate cum voluptates corrupti perferendis rerum fugiat cumque nemo, commodi reprehenderit, praesentium modi. Quam, modi, reiciendis nam similique corporis, facilis excepturi dolor animi totam incidunt explicabo aperiam cum nulla ab minus optio id magnam! Quia, consectetur soluta? Enim iusto temporibus quo aliquid, inventore sint ipsum voluptatum error pariatur architecto. Unde ipsum similique numquam vel repellendus fuga? Obcaecati nemo dolor voluptate laudantium id, libero commodi similique voluptatem rem, dolores odio. Tenetur voluptatum deleniti tempora officia eos repudiandae voluptatem dicta maiores distinctio. Libero corporis ut unde culpa.'
+    },
+    {
+      id: '2',
+      name: 'my notebook2',
+      content: '  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus ut libero dolor doloribus laborum numquam cupiditate cum voluptates corrupti perferendis rerum fugiat cumque nemo, commodi reprehenderit, praesentium modi. Quam, modi, reiciendis nam similique corporis, facilis excepturi dolor animi totam incidunt explicabo aperiam cum nulla ab minus optio id magnam! Quia, consectetur soluta? Enim iusto temporibus quo aliquid, inventore sint ipsum voluptatum error pariatur architecto. Unde ipsum similique numquam vel repellendus fuga? Obcaecati nemo dolor voluptate laudantium id, libero commodi similique voluptatem rem, dolores odio. Tenetur voluptatum deleniti tempora officia eos repudiandae voluptatem dicta maiores distinctio. Libero corporis ut unde culpa.'
+    },
+    {
+      id: '3',
+      name: 'my notebook3',
+      content: '  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus ut libero dolor doloribus laborum numquam cupiditate cum voluptates corrupti perferendis rerum fugiat cumque nemo, commodi reprehenderit, praesentium modi. Quam, modi, reiciendis nam similique corporis, facilis excepturi dolor animi totam incidunt explicabo aperiam cum nulla ab minus optio id magnam! Quia, consectetur soluta? Enim iusto temporibus quo aliquid, inventore sint ipsum voluptatum error pariatur architecto. Unde ipsum similique numquam vel repellendus fuga? Obcaecati nemo dolor voluptate laudantium id, libero commodi similique voluptatem rem, dolores odio. Tenetur voluptatum deleniti tempora officia eos repudiandae voluptatem dicta maiores distinctio. Libero corporis ut unde culpa.'
+    },
+    {
+      id: '4',
+      name: 'my notebook4',
+      content: '  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus ut libero dolor doloribus laborum numquam cupiditate cum voluptates corrupti perferendis rerum fugiat cumque nemo, commodi reprehenderit, praesentium modi. Quam, modi, reiciendis nam similique corporis, facilis excepturi dolor animi totam incidunt explicabo aperiam cum nulla ab minus optio id magnam! Quia, consectetur soluta? Enim iusto temporibus quo aliquid, inventore sint ipsum voluptatum error pariatur architecto. Unde ipsum similique numquam vel repellendus fuga? Obcaecati nemo dolor voluptate laudantium id, libero commodi similique voluptatem rem, dolores odio. Tenetur voluptatum deleniti tempora officia eos repudiandae voluptatem dicta maiores distinctio. Libero corporis ut unde culpa.'
+    },
+    {
+      id: '5',
+      name: 'my notebook5',
+      content: '  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus ut libero dolor doloribus laborum numquam cupiditate cum voluptates corrupti perferendis rerum fugiat cumque nemo, commodi reprehenderit, praesentium modi. Quam, modi, reiciendis nam similique corporis, facilis excepturi dolor animi totam incidunt explicabo aperiam cum nulla ab minus optio id magnam! Quia, consectetur soluta? Enim iusto temporibus quo aliquid, inventore sint ipsum voluptatum error pariatur architecto. Unde ipsum similique numquam vel repellendus fuga? Obcaecati nemo dolor voluptate laudantium id, libero commodi similique voluptatem rem, dolores odio. Tenetur voluptatum deleniti tempora officia eos repudiandae voluptatem dicta maiores distinctio. Libero corporis ut unde culpa.'
+    },
+    {
+      id: '6',
+      name: 'my notebook6',
+      content: '  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus ut libero dolor doloribus laborum numquam cupiditate cum voluptates corrupti perferendis rerum fugiat cumque nemo, commodi reprehenderit, praesentium modi. Quam, modi, reiciendis nam similique corporis, facilis excepturi dolor animi totam incidunt explicabo aperiam cum nulla ab minus optio id magnam! Quia, consectetur soluta? Enim iusto temporibus quo aliquid, inventore sint ipsum voluptatum error pariatur architecto. Unde ipsum similique numquam vel repellendus fuga? Obcaecati nemo dolor voluptate laudantium id, libero commodi similique voluptatem rem, dolores odio. Tenetur voluptatum deleniti tempora officia eos repudiandae voluptatem dicta maiores distinctio. Libero corporis ut unde culpa.'
+    },
+    {
+      id: '7',
+      name: 'my notebook7',
+      content: '  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus ut libero dolor doloribus laborum numquam cupiditate cum voluptates corrupti perferendis rerum fugiat cumque nemo, commodi reprehenderit, praesentium modi. Quam, modi, reiciendis nam similique corporis, facilis excepturi dolor animi totam incidunt explicabo aperiam cum nulla ab minus optio id magnam! Quia, consectetur soluta? Enim iusto temporibus quo aliquid, inventore sint ipsum voluptatum error pariatur architecto. Unde ipsum similique numquam vel repellendus fuga? Obcaecati nemo dolor voluptate laudantium id, libero commodi similique voluptatem rem, dolores odio. Tenetur voluptatum deleniti tempora officia eos repudiandae voluptatem dicta maiores distinctio. Libero corporis ut unde culpa.'
+    },
+    {
+      id: '8',
+      name: 'my notebook8',
+      content: '  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus ut libero dolor doloribus laborum numquam cupiditate cum voluptates corrupti perferendis rerum fugiat cumque nemo, commodi reprehenderit, praesentium modi. Quam, modi, reiciendis nam similique corporis, facilis excepturi dolor animi totam incidunt explicabo aperiam cum nulla ab minus optio id magnam! Quia, consectetur soluta? Enim iusto temporibus quo aliquid, inventore sint ipsum voluptatum error pariatur architecto. Unde ipsum similique numquam vel repellendus fuga? Obcaecati nemo dolor voluptate laudantium id, libero commodi similique voluptatem rem, dolores odio. Tenetur voluptatum deleniti tempora officia eos repudiandae voluptatem dicta maiores distinctio. Libero corporis ut unde culpa.'
+    }
+  ]
 
   return (
     <>
@@ -28,8 +70,8 @@ const Dashboard = () => {
             {/* bottom */}
             <div className="d-flex flex-wrap mt-4 gap-3 justify-content-center justify-content-md-start">
               <AddCard />
-              {new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 5, 6, 7, 8, 9).map(item => (
-                <NoteCard />
+              {data.map((item) => (
+                <NoteCard modalData={item} modalDataId={item.id} key={item.id} />
               ))}
             </div>
           </div>

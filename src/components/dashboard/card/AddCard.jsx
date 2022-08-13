@@ -46,6 +46,15 @@ const AddCard = () => {
                   <label htmlFor="judul" className="form-label text-purple">Judul</label>
                   <input type="text" onChange={handleChange} className="form-control" name='judul' id="judul" aria-describedby="emailHelp" />
                 </div>
+                <div className='mb-2'>
+                  <label htmlFor="kategori" className="form-label text-purple">Kategori</label>
+                  <select className="form-select shadow-none" name="kategori" id="kategori">
+                    <option value="1">Pilih Kategori</option>
+                    <option value="2">Catatan Magang</option>
+                    <option value="3">Catatan Kuliah</option>
+                    <option value="4">Catatan Paylater</option>
+                  </select>
+                </div>
                 <div>
                   <label htmlFor="isi" className="form-label text-purple">Isi</label>
                   <textarea name="isi" onChange={handleChange} id="" cols="30" rows="10"></textarea>
