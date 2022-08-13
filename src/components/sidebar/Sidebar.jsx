@@ -7,10 +7,10 @@ function Sidebar() {
     <div className='border'>
         <ul className="list-group">
             <Link to="/profile" style={{ textDecoration: "none" }}>
-                <li className="list-group-item"><span><FiUser /></span> Profile</li>
+                <li className="list-group-item list-group-item-action"><span><FiUser /></span> Profile</li>
             </Link>
             <Link to="/setting" style={{ textDecoration: "none" }}>
-                <li className="list-group-item"><span><FiSettings /></span> Pengaturan</li>
+                <li className="list-group-item list-group-item-action"><span><FiSettings /></span> Pengaturan</li>
             </Link>       
         </ul>
     </div>
