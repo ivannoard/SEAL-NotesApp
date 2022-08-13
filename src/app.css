@@ -1,3 +1,52 @@
+.nav-menu {
+  /* background-color: red; */
+}
+
+.nav-menu:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.btn-purple {
+  background: #4164E3;
+  color: white;
+}
+
+.btn-purple:hover,
+.btn-purple:focus {
+  background: #3859ce;
+  color: white;
+  border: 1px solid #3859ce;
+}
+
+.btn-outline-purple,
+.btn-outline-purple:focus {
+  border: 1px solid #4164E3;
+  color: #4164E3;
+}
+
+.btn-outline-purple:hover {
+  background: #4164E3;
+  border: 1px solid #4164E3;
+  color: white;
+}
+
+.form-control:focus {
+  border-color: #4164E3;
+  box-shadow: none;
+}
+
+.text-purple {
+  color: #4164E3;
+}
+
 p {
   margin-bottom: 0;
+}
+
+textarea {
+  background: transparent;
+}
+
+textarea:focus {
+  outline: 1px solid blue;
 }
