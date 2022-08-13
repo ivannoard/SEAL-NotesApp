@@ -5,16 +5,14 @@ import { FiSettings, FiUser } from "react-icons/fi";
 function Sidebar() {
   return (
     <div className='border'>
-        <div>
+        <ul className="list-group">
             <Link to="/profile" style={{ textDecoration: "none" }}>
-                <button type="button" className="btn"><span><FiUser /></span> Profile</button>
+                <li className="list-group-item"><span><FiUser /></span> Profile</li>
             </Link>
-        </div>
-        <div>
             <Link to="/setting" style={{ textDecoration: "none" }}>
-                <button type="button" className="btn"><span><FiSettings /></span> Pengaturan</button>
-            </Link>
-        </div>
+                <li className="list-group-item"><span><FiSettings /></span> Pengaturan</li>
+            </Link>       
+        </ul>
     </div>
   )
 }
