@@ -1,8 +1,10 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../images/logo.png'
 import right from '../../images/right.png'
 import './style.css'
+import cookies from 'js-cookie';
 
 const Register = () => {
   const imgStyle = {
@@ -13,6 +15,67 @@ const Register = () => {
     backgroundPositionY: 'center',
     zIndex: -10
   }
+  const [fields, setFields] = useState({})
+  const navigate = useNavigate()
+
+  function handleChange(e) {
+    e.preventDefault()
+    setFields(
+      {
+        ...fields,
+        [e.target.getAttribute('name')]: e.target.value
+      }
+    )
+  }
+
+
+  async function handleRegister(e) {
+    e.preventDefault()
+    const requestData = JSON.stringify(fields)
+    /*
+    const requestRegister = await axios.get('https://notedapp-api.herokuapp.com/api/sanctum/csrf-cookie')
+      .then(response => {
+        const data = response.data.slice(406, 480).split(' ')
+        const csrfToken = data[2].split('=')[1].slice(1, -1)
+        // const requestData = JSON.stringify(fields)
+        // console.log('cookie, ', response.headers)
+        return axios.post('http://notedapp-api.herokuapp.com/api/register', {
+          "_token": csrfToken,
+          name: fields.name,
+          email: fields.email,
+          password: fields.password,
+          password_confirmation: fields.password_confirmation
+        }, {
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN': csrfToken
+          },
+          credentials: "include",
+        }).then(response => console.log(response.headers["Set-Cookie"])).catch((e) => console.log('error: ', e))
+        // const data = JSON.stringify(fields)
+        // return axios.post('https://notedapp-api.herokuapp.com/api/register', data, {
+        //   xsrfHeaderName: 'X-CSRF-Token',
+        //   withCredentials: true
+        // })
+      })
+      .catch((e) => console.log(e))
+      */
+
+    const requestRegister = await axios.post('https://notedapp-api.herokuapp.com/api/register', requestData,
+      {
+        headers: {
+          'Accept': 'application/json',
+          "Content-Type": "application/json",
+          'xsrfHeaderName': 'X-CSRF-Token',
+          'withCredentials': true
+        }
+      }).then(response => {
+        navigate('/login', alert('silahkan login!'))
+      }).catch((e) => console.log('error: ', e))
+
+  }
+
+
 
   return (
     <div className="Register">
@@ -28,12 +91,14 @@ const Register = () => {
                   <h1 style={{ marginTop: '-15px' }}>QuickNoted.</h1>
                 </div>
                 <div className="">
-                  <input type="email" className="form-control mt-4" id="email" placeholder="Email" />
-                  <input type="text" className="form-control mt-4" id="name" placeholder="Nama" />
-                  <input type="password" className="form-control" id="password" placeholder="Kata Sandi" />
-                  <input type="password" className="form-control" id="password" placeholder="Ulangi Kata Sandi" />
+                  <form onSubmit={handleRegister}>
+                    <input type="email" onChange={handleChange} name="email" className="form-control mt-4" id="email" placeholder="Email" />
+                    <input type="text" onChange={handleChange} name="name" className="form-control mt-4" id="name" placeholder="Nama" />
+                    <input type="password" onChange={handleChange} name="password" className="form-control" id="password" placeholder="Kata Sandi" />
+                    <input type="password" onChange={handleChange} name="password_confirmation" className="form-control" id="confirm_password" placeholder="Ulangi Kata Sandi" />
 
-                  <button className="sign-in">Masuk</button>
+                    <button type="submit" className="sign-in">Masuk</button>
+                  </form>
                 </div>
                 <div className="form-check ms-2 my-2 d-flex justify-content-between">
                   <div className="checkbox">
@@ -54,6 +119,7 @@ const Register = () => {
           </div>
         </div>
       </section >
+
     </div >
   )
 }

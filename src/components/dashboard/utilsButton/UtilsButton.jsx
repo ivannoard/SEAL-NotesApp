@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+import React, { useEffect, useState } from 'react'
 import { BiDownArrow, BiPlusCircle } from "react-icons/bi";
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const UtilsButton = () => {
-  const [fields, setFields] = useState({
-    judul: '',
-    isi: ''
-  })
+  const [fields, setFields] = useState({})
+  const [kategori, setKategori] = useState()
+  const navigate = useNavigate()
+
   const id = false
+  const user = useSelector(state => state.user.user)
+  // userId
+  const decodedIdUser = jwtDecode(user.token).sub
+  // user token
+  const userToken = user.token
+  // get kategori
+  const categories = kategori?.data?.data.filter(item => item.user_id === decodedIdUser)
 
   const handleChange = (e) => {
     const name = e.target.getAttribute('name')
@@ -16,9 +27,20 @@ const UtilsButton = () => {
     })
   }
   const handleAdd = (e) => {
-    e.preventDefault()
-    console.log(fields)
+    // e.preventDefault()
+    const requestData = axios.post('https://notedapp-api.herokuapp.com/api/category/create', {
+      user_id: decodedIdUser,
+      name: fields.kategori
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    }).then(response => navigate('/')).catch((e) => console.log(e))
   }
+
+  useEffect(() => {
+    const requestKategori = axios.get('https://notedapp-api.herokuapp.com/api/categories').then(response => setKategori(response))
+  }, [])
 
   return (
     <>
@@ -45,18 +67,13 @@ const UtilsButton = () => {
               <div className="list-category px-md-3 px-sm-0">
                 <p className='text-purple mb-2'>Daftar Kategori</p>
                 <ul className="list-group">
-                  <li className="list-group-item d-flex justify-content-between align-items-center">
-                    <p>Kategori 1</p>
-                    <p className="text-danger" style={{ cursor: 'pointer' }}>Hapus</p>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center">
-                    <p>Kategori 2</p>
-                    <p className="text-danger" style={{ cursor: 'pointer' }}>Hapus</p>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between align-items-center">
-                    <p>Kategori 3</p>
-                    <p className="text-danger" style={{ cursor: 'pointer' }}>Hapus</p>
-                  </li>
+                  {categories?.map(item => (
+                    <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
+                      <p>{item.name}</p>
+                      <p className="text-danger" style={{ cursor: 'pointer' }}>Hapus</p>
+                    </li>
+                  ))}
+
                 </ul>
               </div>
             </div>

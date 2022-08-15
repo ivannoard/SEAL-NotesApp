@@ -1,13 +1,24 @@
+import axios from 'axios'
+import jwtDecode from 'jwt-decode'
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import filePlus from '../../../images/file-plus.png'
 import './addcard.css'
 
 const AddCard = () => {
-  const [fields, setFields] = useState({
-    judul: '',
-    isi: ''
-  })
+  const [fields, setFields] = useState({})
+  const user = useSelector(state => state.user.user)
+  // userId
+  const decodedIdUser = jwtDecode(user.token).sub
+  // user token
+  const userToken = user.token
+
+  const [kategori, setKategori] = useState()
+
+  const categoriesUser = kategori?.data?.data.filter(item => item.user_id === decodedIdUser)
+
   const id = false
 
   const handleChange = (e) => {
@@ -17,10 +28,29 @@ const AddCard = () => {
       [name]: e.target.value
     })
   }
+
   const handleAdd = (e) => {
     e.preventDefault()
     console.log(fields)
+    const requetPostNote = axios.post('https://notedapp-api.herokuapp.com/api/note/create', {
+      user_id: decodedIdUser,
+      category_id: fields.kategori,
+      title: fields.judul,
+      content: fields.isi
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    }).then(response => {
+      console.log(response)
+      setFields({})
+    })
   }
+
+  useEffect(() => {
+    const requestCategory = axios.get('https://notedapp-api.herokuapp.com/api/categories').then(response => setKategori(response))
+  }, [])
+
   return (
     <>
       <div className="card card-add rounded-5 border-light" data-bs-toggle="modal" data-bs-target="#modaladd">
@@ -48,11 +78,11 @@ const AddCard = () => {
                 </div>
                 <div className='mb-2'>
                   <label htmlFor="kategori" className="form-label text-purple">Kategori</label>
-                  <select className="form-select shadow-none" name="kategori" id="kategori">
+                  <select onChange={handleChange} className="form-select shadow-none" name="kategori" id="kategori">
                     <option value="1">Pilih Kategori</option>
-                    <option value="2">Catatan Magang</option>
-                    <option value="3">Catatan Kuliah</option>
-                    <option value="4">Catatan Paylater</option>
+                    {categoriesUser?.map(item => (
+                      <option value={item.id} key={item.id}>{item.name}</option>
+                    ))}
                   </select>
                 </div>
                 <div>

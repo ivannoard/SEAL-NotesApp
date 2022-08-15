@@ -5,6 +5,8 @@ import { loginUser } from "../../redux/actions/userAction"
 import logo from '../../images/logo.png'
 import right from '../../images/right.png'
 import './style.css'
+import axios from "axios"
+import { getAllNotes } from "../../redux/actions/notesAction"
 
 const Login = () => {
   const imgStyle = {
@@ -38,7 +40,20 @@ const Login = () => {
 
   function handleLogin(e) {
     e.preventDefault()
-    dispatch(loginUser(fields))
+    const requestLogin = axios({
+      method: 'POST',
+      url: 'http://notedapp-api.herokuapp.com/api/login',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      data: JSON.stringify(fields)
+    }).then(response => {
+      // console.log(response)
+      dispatch(loginUser(response.data))
+      navigate('/')
+    }).catch((e) => console.log(e))
+    // dispatch(getAllNotes())
+    // dispatch(loginUser(fields))
   }
 
   useEffect(() => {
