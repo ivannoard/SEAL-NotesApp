@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import { loginUser } from "../../redux/actions/userAction"
+import { getUserData, loginUser } from "../../redux/actions/userAction"
 import logo from '../../images/logo.png'
 import right from '../../images/right.png'
 import './style.css'
@@ -50,6 +50,8 @@ const Login = () => {
     }).then(response => {
       // console.log(response)
       dispatch(loginUser(response.data))
+      dispatch(getUserData(response.data.token))
+      dispatch(getAllNotes())
       navigate('/')
     }).catch((e) => console.log(e))
     // dispatch(getAllNotes())

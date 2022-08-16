@@ -27,7 +27,7 @@ const UtilsButton = () => {
     })
   }
   const handleAdd = (e) => {
-    // e.preventDefault()
+    e.preventDefault()
     const requestData = axios.post('https://notedapp-api.herokuapp.com/api/category/create', {
       user_id: decodedIdUser,
       name: fields.kategori
@@ -35,7 +35,21 @@ const UtilsButton = () => {
       headers: {
         'Authorization': 'Bearer ' + userToken
       }
-    }).then(response => navigate('/')).catch((e) => console.log(e))
+    }).then(response => window.location.reload()).catch((e) => console.log(e))
+  }
+
+  const handleDelete = (e, id) => {
+    e.preventDefault()
+    const requestDelete = axios.delete(`http://notedapp-api.herokuapp.com/api/category/delete/${id}`, {
+      headers: {
+        'Authorization': 'Bearer ' + userToken
+      }
+    })
+      .then(response => {
+        alert('Berhasil dihapus!')
+        window.location.reload()
+      })
+      .catch((e) => console.log(e))
   }
 
   useEffect(() => {
@@ -70,18 +84,17 @@ const UtilsButton = () => {
                   {categories?.map(item => (
                     <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
                       <p>{item.name}</p>
-                      <p className="text-danger" style={{ cursor: 'pointer' }}>Hapus</p>
+                      <p className="text-danger" style={{ cursor: 'pointer' }} onClick={(e) => handleDelete(e, item.id)}>Hapus</p>
                     </li>
                   ))}
-
+                  <div className={`modal-footer d-flex ${id ? 'justify-content-between' : ''} align-items-center`}>
+                    {id && <p>August 10, 2022</p>}
+                    <div className="buttons d-flex gap-2">
+                      {id && <button type="submit" className="btn btn-outline-danger rounded-pill" onClick={handleAdd}>Hapus</button>}
+                      <button type="submit" className="btn btn-purple rounded-pill ms-auto" onClick={handleAdd}>Tambah</button>
+                    </div>
+                  </div>
                 </ul>
-              </div>
-            </div>
-            <div className={`modal-footer d-flex ${id ? 'justify-content-between' : ''} align-items-center`}>
-              {id && <p>August 10, 2022</p>}
-              <div className="buttons d-flex gap-2">
-                {id && <button type="submit" className="btn btn-outline-danger rounded-pill" onClick={handleAdd}>Hapus</button>}
-                <button type="submit" className="btn btn-purple rounded-pill ms-auto" onClick={handleAdd}>Tambah</button>
               </div>
             </div>
           </div>

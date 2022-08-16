@@ -9,6 +9,7 @@ import { useEffect, useState } from "react"
 import { getAllNotes } from "../../redux/actions/notesAction"
 import jwtDecode from "jwt-decode"
 import axios from "axios"
+import { getUserData } from "../../redux/actions/userAction"
 
 const Dashboard = () => {
   const user = useSelector(state => state.user.user)
@@ -21,12 +22,16 @@ const Dashboard = () => {
   // user token
   const userToken = user.token
 
-  console.log(notesData)
+  console.log(userToken)
 
   useEffect(() => {
     if (notesData.length < 1) dispatch(getAllNotes())
     const requestKategori = axios.get('https://notedapp-api.herokuapp.com/api/categories').then(response => setKategori(response))
   }, [notesData])
+
+  // useEffect(() => {
+  //   dispatch(getUserData(user.token))
+  // }, [user, notesData])
 
   return (
     <>
@@ -47,8 +52,8 @@ const Dashboard = () => {
             {/* bottom */}
             <div className="d-flex flex-wrap mt-4 gap-3 justify-content-center justify-content-md-start">
               <AddCard />
-              {notesData.filter(item => item.user_id === decodedIdUser).map((item) => (
-                <NoteCard modalData={item} category={getCategory} modalDataId={item.id} key={item.id} />
+              {notesData?.filter(item => item.user_id === decodedIdUser).map((item) => (
+                <NoteCard modalData={item} category={getCategory} modalDataId={item.id} key={item.id} token={userToken} />
               ))}
             </div>
           </div>

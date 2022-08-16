@@ -42,7 +42,7 @@ const AddCard = () => {
         'Authorization': 'Bearer ' + userToken
       }
     }).then(response => {
-      console.log(response)
+      window.location.reload()
       setFields({})
     })
   }
