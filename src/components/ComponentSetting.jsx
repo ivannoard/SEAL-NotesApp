@@ -10,16 +10,16 @@ function ComponentSetting() {
           <input type="password" className="form-control rounded-pill" placeholder='Masukkan Kata Sandi Lama' />
         </div>
         <div className="mb-3">
-          <label for="exampleInputPsbaru" className="form-label">Kata Sandi Baru</label>
+          <label htmlFor="exampleInputPsbaru" className="form-label">Kata Sandi Baru</label>
           <input type="password" className="form-control rounded-pill" placeholder='Masukkan Kata Sandi Baru' />
         </div>
         <div className="mb-3">
           <label className="form-label">Konfirmasi Kata Sandi Baru</label>
-          <input type="password" className="form-control rounded-pill" placeholder='Masukkan Kata Sandi Baru' />
+          <input type="password" className="form-control rounded-pill" placeholder='Konfirmasi Kata Sandi Baru' />
         </div>
       </form>
       <div className='d-grid gap-2 col-4 mx-auto'>
-        <button type="submit" className="btn btn-purple rounded-pill">Simpan</button>
+        <button type="submit" className="btn btn-purple rounded-pill">Perbarui</button>
       </div>
     </div>
   )

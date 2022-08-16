@@ -8,13 +8,14 @@ import { FiLogOut } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import jwtDecode from 'jwt-decode'
+
 const Navbar = () => {
 
   const [profileToggle, setProfileToggle] = useState(false)
   const user = useSelector(state => state.user.user)
   const userData = useSelector(state => state.user.userData)
-  const decodedIdUser = jwtDecode(user.token).sub
-  // console.log(userData)
+  const decodedIdUser = jwtDecode(user?.token).sub
+
   const [getUserDetail, setGetUserDetail] = useState()
   const navigate = useNavigate()
   const dispatch = useDispatch()

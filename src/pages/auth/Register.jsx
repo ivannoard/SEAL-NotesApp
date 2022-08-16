@@ -87,7 +87,7 @@ const Register = () => {
             <div className="row justify-content-center align-items-center h-100">
               <div className="col-md-8 col-10 form">
                 <div className="header text-center">
-                  <img src={logo} alt="" />
+                  <img src={logo} alt="logo" />
                   <h1 style={{ marginTop: '-15px' }}>QuickNoted.</h1>
                 </div>
                 <div className="">
@@ -97,7 +97,7 @@ const Register = () => {
                     <input type="password" onChange={handleChange} name="password" className="form-control" id="password" placeholder="Kata Sandi" />
                     <input type="password" onChange={handleChange} name="password_confirmation" className="form-control" id="confirm_password" placeholder="Ulangi Kata Sandi" />
 
-                    <button type="submit" className="sign-in">Masuk</button>
+                    <button type="submit" className="sign-in">Daftar</button>
                   </form>
                 </div>
                 <div className="form-check ms-2 my-2 d-flex justify-content-between">

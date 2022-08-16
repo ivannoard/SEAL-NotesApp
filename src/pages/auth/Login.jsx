@@ -38,9 +38,9 @@ const Login = () => {
     )
   }
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault()
-    const requestLogin = axios({
+    const requestLogin = await axios({
       method: 'POST',
       url: 'http://notedapp-api.herokuapp.com/api/login',
       headers: {
@@ -54,8 +54,6 @@ const Login = () => {
       dispatch(getAllNotes())
       navigate('/')
     }).catch((e) => console.log(e))
-    // dispatch(getAllNotes())
-    // dispatch(loginUser(fields))
   }
 
   useEffect(() => {
@@ -63,24 +61,17 @@ const Login = () => {
     if (user) return navigate('/') // middleware
   }, [user])
 
-  console.log(user)
-
   return (
     <div className="Login">
       {/* <h1>Login Component</h1> */}
       {/* Code Here */}
-      {/* <form onSubmit={handleLogin}>
-        <input onChange={handleChange} type="email" name='email' placeholder="Email" />
-        <input onChange={handleChange} type="password" name="password" placeholder="Password" />
-        <button type="submit">Login</button>
-      </form> */}
       <section className="auth container-fluid">
         <div className="row min-vh-100" >
           <div className="col-lg-6 left">
             <div className="row justify-content-center align-items-center h-100">
               <div className="col-md-8 col-10 form">
                 <div className="header text-center">
-                  <img src={logo} alt="" />
+                  <img src={logo} alt="logo" />
                   <h1 style={{ marginTop: '-15px' }}>QuickNoted.</h1>
                 </div>
                 <form onSubmit={handleLogin}>
