@@ -42,7 +42,7 @@ const Login = () => {
     e.preventDefault()
     const requestLogin = await axios({
       method: 'POST',
-      url: 'http://notedapp-api.herokuapp.com/api/login',
+      url: 'https://notedapp-api.herokuapp.com/api/login',
       headers: {
         "Content-Type": "application/json"
       },

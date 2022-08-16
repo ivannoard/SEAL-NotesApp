@@ -40,7 +40,7 @@ const UtilsButton = () => {
 
   const handleDelete = (e, id) => {
     e.preventDefault()
-    const requestDelete = axios.delete(`http://notedapp-api.herokuapp.com/api/category/delete/${id}`, {
+    const requestDelete = axios.delete(`https://notedapp-api.herokuapp.com/api/category/delete/${id}`, {
       headers: {
         'Authorization': 'Bearer ' + userToken
       }

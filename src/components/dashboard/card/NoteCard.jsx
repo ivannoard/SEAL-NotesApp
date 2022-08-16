@@ -37,7 +37,7 @@ const NoteCard = ({ modalData, modalDataId, category, token }) => {
   }
   const handleDelete = (e) => {
     e.preventDefault()
-    const requestDelete = axios.delete(`http://notedapp-api.herokuapp.com/api/note/delete/${modalDataId}`, {
+    const requestDelete = axios.delete(`https://notedapp-api.herokuapp.com/api/note/delete/${modalDataId}`, {
       headers: {
         'Authorization': 'Bearer ' + token
       }
