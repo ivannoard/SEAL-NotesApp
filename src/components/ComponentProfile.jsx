@@ -8,7 +8,7 @@ function ComponentProfile() {
   const user = useSelector(state => state.user.user)
   const [file, setFile] = useState('')
   const [fields, setFields] = useState({})
-  console.log(fields)
+  // console.log(fields)
 
   const handlePhoto = (e) => {
     e.preventDefault()
@@ -45,7 +45,7 @@ function ComponentProfile() {
     }).then(response => console.log(response)).catch((e) => console.log(e))
   }
 
-  console.log(userData?.data?.user?.photo)
+  // console.log(userData?.data?.user?.photo)
 
 
   return (
@@ -55,7 +55,7 @@ function ComponentProfile() {
           <div>
             <span className='me-1'>
               <label htmlFor="file">
-                {file ? <img src={URL.createObjectURL(file)} alt={file.name} width='80px' height='80px' className='rounded-circle' /> : userData?.data?.user?.photo ? <img src={'http://notedapp-api.herokuapp.com/images/' + userData?.data?.user?.photo} alt={userData?.data?.user?.photo} width='80px' height='80px' className='rounded-circle' /> : <FaUserCircle size={80} />}
+                {file ? <img src={URL.createObjectURL(file)} alt={file.name} width='80px' height='80px' className='rounded-circle' style={{ cursor: 'pointer' }} /> : userData?.data?.user?.photo ? <img src={'http://notedapp-api.herokuapp.com/images/' + userData?.data?.user?.photo} alt={userData?.data?.user?.photo} width='80px' height='80px' className='rounded-circle' style={{ cursor: 'pointer' }} /> : <FaUserCircle size={80} style={{ cursor: 'pointer' }} />}
               </label>
             </span>
             <input

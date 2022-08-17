@@ -22,7 +22,7 @@ const Dashboard = () => {
   // user token
   const userToken = user.token
 
-  console.log(userToken)
+  // console.log(userToken)
 
   useEffect(() => {
     if (notesData.length < 1) dispatch(getAllNotes())
@@ -33,7 +33,7 @@ const Dashboard = () => {
   //   dispatch(getUserData(user.token))
   // }, [user, notesData])
 
-  console.log(notesData)
+  // console.log(notesData)
 
   return (
     <>
