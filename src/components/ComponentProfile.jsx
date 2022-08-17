@@ -20,7 +20,7 @@ function ComponentProfile() {
         'Authorization': 'Bearer ' + user.token,
         'Content-Type': 'multipart/form-data'
       }
-    }).then(response => console.log(response)).catch((e) => console.log('error: ', e))
+    }).then(response => window.location.reload()).catch((e) => console.log('error: ', e))
   }
 
   function handleChange(e) {
