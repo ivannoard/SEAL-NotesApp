@@ -44,7 +44,7 @@ const Navbar = () => {
           <div className="right-nav position-relative" style={{ cursor: 'pointer' }} onClick={() => setProfileToggle(!profileToggle)}>
             <div className="profile d-flex align-items-center gap-2">
               <h6 className='username'>{userData?.data?.user?.name}</h6>
-              {!userData.data.user.photo ? <FaUserCircle size={50} /> : <img src={userData.data.user.photo} alt='profile-img' width='50px' height='50px' className="rounded-circle" />}
+              {!userData?.data?.user.photo ? <FaUserCircle size={50} /> : <img src={'http://notedapp-api.herokuapp.com/images/' + userData?.data?.user.photo} alt='profile-img' width='50px' height='50px' className="rounded-circle" />}
             </div>
             {/* toggle profile */}
             <div className="toggle position-absolute px-3 py-2 mt-2 rounded shadow" style={{ display: profileToggle ? 'block' : 'none', background: 'white', zIndex: '5', width: '200px', right: 0 }}>

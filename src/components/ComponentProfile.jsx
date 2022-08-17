@@ -8,7 +8,7 @@ function ComponentProfile() {
   const user = useSelector(state => state.user.user)
   const [file, setFile] = useState('')
   const [fields, setFields] = useState({})
-  console.log(userData)
+  console.log(fields)
 
   const handlePhoto = (e) => {
     e.preventDefault()
@@ -35,15 +35,17 @@ function ComponentProfile() {
 
   const handleUpdate = (e) => {
     e.preventDefault()
-    const updateRequest = axios.post(`https://notedapp-api.herokuapp.com/api/user/update/${userData.data.user.id}`, {
+    const updateRequest = axios.put(`https://notedapp-api.herokuapp.com/api/user/update/${userData.data.user.id}?_method=put`, {
       name: fields.name
     }, {
       headers: {
-        'Authorization': 'Bearer ' + user.token
+        'Authorization': 'Bearer ' + user.token,
+        'Content-Type': 'x-www-form-urlencoded'
       }
     }).then(response => console.log(response)).catch((e) => console.log(e))
   }
 
+  console.log(userData?.data?.user?.photo)
 
 
   return (
@@ -53,7 +55,7 @@ function ComponentProfile() {
           <div>
             <span className='me-1'>
               <label htmlFor="file">
-                {file ? <img src={URL.createObjectURL(file)} alt={file.name} width='80px' height='80px' className='rounded-circle' /> : userData?.data?.user?.photo ? <img src={userData?.data?.user?.photo} alt={userData?.data?.user?.photo} width='80px' height='80px' className='rounded-circle' /> : <FaUserCircle size={80} />}
+                {file ? <img src={URL.createObjectURL(file)} alt={file.name} width='80px' height='80px' className='rounded-circle' /> : userData?.data?.user?.photo ? <img src={'http://notedapp-api.herokuapp.com/images/' + userData?.data?.user?.photo} alt={userData?.data?.user?.photo} width='80px' height='80px' className='rounded-circle' /> : <FaUserCircle size={80} />}
               </label>
             </span>
             <input
