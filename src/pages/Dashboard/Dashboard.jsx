@@ -33,6 +33,8 @@ const Dashboard = () => {
   //   dispatch(getUserData(user.token))
   // }, [user, notesData])
 
+  console.log(notesData)
+
   return (
     <>
       {user ? (

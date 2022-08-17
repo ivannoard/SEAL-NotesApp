@@ -1,31 +1,86 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 import { FaUserCircle } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 
 function ComponentProfile() {
   const userData = useSelector(state => state.user.userData)
-  // console.log(userData)
+  const user = useSelector(state => state.user.user)
+  const [file, setFile] = useState('')
+  const [fields, setFields] = useState({})
+  console.log(userData)
+
+  const handlePhoto = (e) => {
+    e.preventDefault()
+    console.log(file.name)
+    const uploadRequest = axios.post(`https://notedapp-api.herokuapp.com/api/user/upload/photo/${userData.data.user.id}`, {
+      photo: file
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + user.token,
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(response => console.log(response)).catch((e) => console.log('error: ', e))
+  }
+
+  function handleChange(e) {
+    e.preventDefault()
+    setFields(
+      {
+        ...fields,
+        [e.target.getAttribute('name')]: e.target.value
+      }
+    )
+  }
+
+  const handleUpdate = (e) => {
+    e.preventDefault()
+    const updateRequest = axios.post(`https://notedapp-api.herokuapp.com/api/user/update/${userData.data.user.id}`, {
+      name: fields.name
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + user.token
+      }
+    }).then(response => console.log(response)).catch((e) => console.log(e))
+  }
+
+
+
   return (
     <div className='border px-5 py-5 '>
       <div className='d-flex'>
-        <div><span className='me-1'><FaUserCircle size={80} /></span></div>
-        <div className='px-3'>
-          <div>Foto Profile</div>
-          <button type="button" className='btn btn-outline-purple rounded-pill mt-2'>Unggah Foto</button>
-        </div>
+        <form onSubmit={handlePhoto} className='d-flex' encType='multipart/form-data'>
+          <div>
+            <span className='me-1'>
+              <label htmlFor="file">
+                {file ? <img src={URL.createObjectURL(file)} alt={file.name} width='80px' height='80px' className='rounded-circle' /> : userData?.data?.user?.photo ? <img src={userData?.data?.user?.photo} alt={userData?.data?.user?.photo} width='80px' height='80px' className='rounded-circle' /> : <FaUserCircle size={80} />}
+              </label>
+            </span>
+            <input
+              type="file"
+              id='file'
+              style={{ display: 'none' }}
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+          </div>
+          <div className='px-3'>
+            <div>Foto Profile</div>
+            <button type="submit" className='btn btn-outline-purple rounded-pill mt-2' >Unggah Foto</button>
+          </div>
+        </form>
       </div>
       <form className='py-3'>
         <div className="mb-3">
           <label className="form-label">Nama</label>
-          <input type="text" className="form-control rounded-pill" placeholder='Verdian' defaultValue={userData?.data?.user?.name} />
+          <input name='name' onChange={handleChange} type="text" className="form-control rounded-pill" placeholder='Verdian' defaultValue={userData?.data?.user?.name} />
         </div>
         <div className="mb-3">
           <label className="form-label">Email address</label>
-          <input type="email" className="form-control rounded-pill" placeholder='Verdian123@gmail.com' defaultValue={userData?.data?.user?.email} />
+          <input type="email" className="form-control rounded-pill" placeholder='Verdian123@gmail.com' defaultValue={userData?.data?.user?.email} disabled />
         </div>
       </form>
       <div className='d-grid gap-2 col-4 mx-auto'>
-        <button type="submit" className="btn btn-purple rounded-pill">Simpan</button>
+        <button onClick={handleUpdate} className="btn btn-purple rounded-pill">Simpan</button>
       </div>
     </div>
   )
