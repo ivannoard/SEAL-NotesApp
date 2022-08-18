@@ -9,7 +9,7 @@ import { useEffect, useState } from "react"
 import { getAllNotes } from "../../redux/actions/notesAction"
 import jwtDecode from "jwt-decode"
 import axios from "axios"
-import { getUserData } from "../../redux/actions/userAction"
+import { getUserData, logoutUser } from "../../redux/actions/userAction"
 
 const Dashboard = () => {
   const user = useSelector(state => state.user.user)
@@ -29,9 +29,14 @@ const Dashboard = () => {
     const requestKategori = axios.get('https://notedapp-api.herokuapp.com/api/categories').then(response => setKategori(response))
   }, [notesData])
 
-  // useEffect(() => {
-  //   dispatch(getUserData(user.token))
-  // }, [user, notesData])
+  useEffect(() => {
+    const storageToken = JSON.parse(localStorage.getItem('user')).token
+    const decodedToken = jwtDecode(storageToken)
+    let currentDate = new Date()
+    if (decodedToken.exp * 1000 < currentDate.getTime()) {
+      dispatch(logoutUser())
+    }
+  }, [])
 
   // console.log(notesData)
 
