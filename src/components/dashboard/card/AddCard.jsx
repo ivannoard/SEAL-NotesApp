@@ -31,7 +31,6 @@ const AddCard = () => {
 
   const handleAdd = (e) => {
     e.preventDefault()
-    console.log(fields)
     const requetPostNote = axios.post('https://notedapp-api.herokuapp.com/api/note/create', {
       user_id: decodedIdUser,
       category_id: fields.kategori,

@@ -21,11 +21,11 @@ const Dashboard = () => {
   const decodedIdUser = jwtDecode(user.token).sub
   // user token
   const userToken = user.token
-
-  // console.log(userToken)
+  // filtered data
+  const filteredData = notesData?.filter(item => item.user_id === decodedIdUser)
 
   useEffect(() => {
-    if (notesData.length < 1) dispatch(getAllNotes())
+    if (notesData?.length < 1) dispatch(getAllNotes())
     const requestKategori = axios.get('https://notedapp-api.herokuapp.com/api/categories').then(response => setKategori(response))
   }, [notesData])
 
@@ -54,7 +54,7 @@ const Dashboard = () => {
             {/* bottom */}
             <div className="d-flex flex-wrap mt-4 gap-3 justify-content-center justify-content-md-start">
               <AddCard />
-              {notesData?.filter(item => item.user_id === decodedIdUser).map((item) => (
+              {filteredData?.map((item) => (
                 <NoteCard modalData={item} category={getCategory} modalDataId={item.id} key={item.id} token={userToken} />
               ))}
             </div>

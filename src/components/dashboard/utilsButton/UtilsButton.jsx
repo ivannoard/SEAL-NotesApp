@@ -2,13 +2,17 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import React, { useEffect, useState } from 'react'
 import { BiDownArrow, BiPlusCircle } from "react-icons/bi";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getAllNotes } from '../../../redux/actions/notesAction';
+import { ActionTypes } from '../../../redux/constants/ActionTypes';
 
 const UtilsButton = () => {
   const [fields, setFields] = useState({})
   const [kategori, setKategori] = useState()
   const navigate = useNavigate()
+  const [toggleSort, setToggleSort] = useState(false)
+  const dispatch = useDispatch()
 
   const id = false
   const user = useSelector(state => state.user.user)
@@ -55,12 +59,53 @@ const UtilsButton = () => {
   useEffect(() => {
     const requestKategori = axios.get('https://notedapp-api.herokuapp.com/api/categories').then(response => setKategori(response))
   }, [])
+  const handleNormalSort = () => {
+    // console.log('normal sort')
+    dispatch(getAllNotes())
+  }
+  const handleByTitleSort = () => {
+    // console.log('title sort')
+    const notesRequest = axios.get(`https://notedapp-api.herokuapp.com/api/notes?sort_by=title`)
+      .then(response => {
+        const filteredData = response.data.data.filter(item => item.user_id === decodedIdUser)
+        // console.log(filteredData)
+        dispatch({ type: ActionTypes.FETCH_NOTES, payload: filteredData })
+      })
+  }
+  const handleByUpdateASCSort = () => {
+    // console.log('asc sort')
+    const notesRequest = axios.get(`https://notedapp-api.herokuapp.com/api/notes?sort_by=updated_at&sort_order=asc`)
+      .then(response => {
+        const filteredData = response.data.data.filter(item => item.user_id === decodedIdUser)
+        // console.log(filteredData)
+        dispatch({ type: ActionTypes.FETCH_NOTES, payload: filteredData })
+      })
+  }
+  const handleByUpdateDESCSort = () => {
+    // console.log('desc sort')
+    const notesRequest = axios.get(`https://notedapp-api.herokuapp.com/api/notes?sort_by=updated_at&sort_order=desc`)
+      .then(response => {
+        const filteredData = response.data.data.filter(item => item.user_id === decodedIdUser)
+        // console.log(filteredData)
+        dispatch({ type: ActionTypes.FETCH_NOTES, payload: filteredData })
+      })
+  }
 
   return (
     <>
       <div className="d-flex gap-2 sm-mt-3 justify-content-between mt-3 mt-md-0">
         <button type="button" className="btn btn-purple rounded-pill ms-md-auto ms-sm-0 py-2" data-bs-toggle="modal" data-bs-target="#modalkategori"><span className='me-1'><BiPlusCircle size={25} /></span>Tambah Kategori</button>
-        <button type="button" className="btn btn-outline-purple rounded-pill py-2">Sorting By <span><BiDownArrow /></span></button>
+        <div className='position-relative'>
+          <button onClick={() => setToggleSort(!toggleSort)} type="button" className="btn btn-outline-purple rounded-pill py-2">Sorting By <span><BiDownArrow /></span></button>
+          {toggleSort && (
+            <div className='position-absolute rounded px-2 py-2' style={{ width: '200px', backgroundColor: 'white', top: '44px', right: 0, zIndex: 11 }}>
+              <p className='nav-menu' style={{ cursor: 'pointer' }} onClick={() => handleNormalSort()}>None</p>
+              <p className='nav-menu' style={{ cursor: 'pointer' }} onClick={() => handleByTitleSort()}>Title</p>
+              <p className='nav-menu' style={{ cursor: 'pointer' }} onClick={() => handleByUpdateASCSort()}>Updated_at (ASC)</p>
+              <p className='nav-menu' style={{ cursor: 'pointer' }} onClick={() => handleByUpdateDESCSort()}>Updated_at (DESC)</p>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* modal */}

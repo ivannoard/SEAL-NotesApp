@@ -12,7 +12,7 @@ function ComponentProfile() {
 
   const handlePhoto = (e) => {
     e.preventDefault()
-    console.log(file.name)
+    // console.log(file.name)
     const uploadRequest = axios.post(`https://notedapp-api.herokuapp.com/api/user/upload/photo/${userData.data.user.id}`, {
       photo: file
     }, {
@@ -35,17 +35,18 @@ function ComponentProfile() {
 
   const handleUpdate = (e) => {
     e.preventDefault()
-    const updateRequest = axios.put(`https://notedapp-api.herokuapp.com/api/user/update/${userData.data.user.id}?_method=put`, {
+    const updateRequest = axios.post(`https://notedapp-api.herokuapp.com/api/user/update/${userData.data.user.id}`, {
+      email: fields.email,
       name: fields.name
     }, {
       headers: {
         'Authorization': 'Bearer ' + user.token,
-        'Content-Type': 'x-www-form-urlencoded'
+        // 'Content-Type': 'x-www-form-urlencoded'
       }
-    }).then(response => console.log(response)).catch((e) => console.log(e))
+    }).then(response => window.location.reload()).catch((e) => console.log(e))
   }
 
-  // console.log(userData?.data?.user?.photo)
+  // console.log(fields)
 
 
   return (
@@ -78,7 +79,7 @@ function ComponentProfile() {
         </div>
         <div className="mb-3">
           <label className="form-label">Email address</label>
-          <input type="email" className="form-control rounded-pill" placeholder='Verdian123@gmail.com' defaultValue={userData?.data?.user?.email} disabled />
+          <input name='email' onChange={handleChange} type="email" className="form-control rounded-pill" placeholder='Verdian123@gmail.com' defaultValue={userData?.data?.user?.email} />
         </div>
       </form>
       <div className='d-grid gap-2 col-4 mx-auto'>

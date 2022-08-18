@@ -13,6 +13,7 @@ const NoteCard = ({ modalData, modalDataId, category, token }) => {
   // console.log(bgColor[colorIndex])
   const [fields, setFields] = useState()
   const navigate = useNavigate()
+  const dateTime = modalData?.updated_at.split('T')[0]
 
   const handleChange = (e) => {
     const name = e.target.getAttribute('name')
@@ -61,7 +62,7 @@ const NoteCard = ({ modalData, modalDataId, category, token }) => {
               <p className="card-text fs-6">{modalData.content.slice(0, 180)} . . . </p>
             </div>
             <div className="bottom d-flex justify-content-between align-items-center">
-              <p className='align-self-end pb-2'>August 10, 2022</p>
+              <p className='align-self-end pb-2'>{dateTime}</p>
               <div style={{ background: '#161616', width: '47px', height: '47px', cursor: 'pointer' }} className='rounded-circle text-center d-flex justify-content-center align-items-center text-white' data-bs-toggle="modal" data-bs-target={`#modalupdate${modalDataId}`}>
                 <BiPencil size={30} />
               </div>
@@ -101,7 +102,7 @@ const NoteCard = ({ modalData, modalDataId, category, token }) => {
               </form>
             </div>
             <div className={`modal-footer d-flex ${modalDataId ? 'justify-content-between' : ''} align-items-center`}>
-              {modalDataId && <p>August 10, 2022</p>}
+              {modalDataId && <p>{dateTime}</p>}
               <div className="buttons d-flex gap-2">
                 {modalDataId && <button type="submit" className="btn btn-outline-danger rounded-pill" onClick={handleDelete}>Hapus</button>}
                 <button className="btn btn-purple rounded-pill ms-auto" onClick={handleUpdate}>Perbarui</button>
